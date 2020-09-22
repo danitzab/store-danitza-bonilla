@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/store-danitza-bonilla/static/css/main.5f361e03.chunk.css",
+    "main.js": "/store-danitza-bonilla/static/js/main.ebc14fc1.chunk.js",
+    "main.js.map": "/store-danitza-bonilla/static/js/main.ebc14fc1.chunk.js.map",
+    "runtime-main.js": "/store-danitza-bonilla/static/js/runtime-main.cf6016fb.js",
+    "runtime-main.js.map": "/store-danitza-bonilla/static/js/runtime-main.cf6016fb.js.map",
+    "static/js/2.d6bf7edf.chunk.js": "/store-danitza-bonilla/static/js/2.d6bf7edf.chunk.js",
+    "static/js/2.d6bf7edf.chunk.js.map": "/store-danitza-bonilla/static/js/2.d6bf7edf.chunk.js.map",
+    "index.html": "/store-danitza-bonilla/index.html",
+    "precache-manifest.ede806747cb8865b2304a8848b8af42f.js": "/store-danitza-bonilla/precache-manifest.ede806747cb8865b2304a8848b8af42f.js",
+    "service-worker.js": "/store-danitza-bonilla/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/store-danitza-bonilla/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.d6bf7edf.chunk.js.LICENSE.txt": "/store-danitza-bonilla/static/js/2.d6bf7edf.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/store-danitza-bonilla/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cf6016fb.js",
+    "static/js/2.d6bf7edf.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.ebc14fc1.chunk.js"
+  ]
+}
