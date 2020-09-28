@@ -1,12 +1,14 @@
 import React from 'react';
-import { Header } from './Header';
-
+import { AppRoutes } from '../routes/AppRoutes';
+import { StoreContextProvider } from '../contexts/StoreContextProvider';
 
 function App() {
   return (
-    <div>
-      <Header/>
-    </div>
+    <StoreContextProvider>
+      <div>
+        <AppRoutes />
+      </div>
+    </StoreContextProvider>
   );
 }
 

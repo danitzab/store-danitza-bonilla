@@ -1,22 +1,16 @@
 import React from 'react';
-import coin from '../assets/icons/coin.svg';
-import logo from '../assets/aerolab-logo.svg';
 import { Banner } from './Banner';
+import { Filter } from './Filter';
+import { User } from './User';
 
 export const Header = () => {
   return (
     <div>
       <div>
-      <img src={logo} alt="aerolab-logo" />
-        <label>
-          Usuario{' '}
-          <label>
-            puntos
-            <img src={coin} alt="coin" />
-          </label>
-        </label>
+        <User />
         <Banner />
       </div>
+      <Filter/>
     </div>
   );
 };
