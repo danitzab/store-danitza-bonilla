@@ -10,18 +10,15 @@ export const StoreContextProvider = ({ children }) => {
 
   useEffect(() => {
     StoreService.getUser().then((response) => setUser(response.data));
+    getProductStore();
   }, []);
 
   const getProductStore = () => {
-    StoreService.getProducts().then((response) => setProducts(response.data));
-  };
-
-  const getCategory = () => {
     StoreService.getProducts().then((response) => {
       setProducts(response.data);
 
       const array = [];
-      response.data.map((element) => {
+      response.data.forEach((element) => {
         const found = array.find((element2) => element2 === element.category);
         if (!found) {
           array.push(element.category);
@@ -31,6 +28,23 @@ export const StoreContextProvider = ({ children }) => {
       setCategories(array);
     });
   };
+
+
+  // const getCategory = () => {
+  //   StoreService.getProducts().then((response) => {
+  //     setProducts(response.data);
+
+  //     const array = [];
+  //     response.data.map((element) => {
+  //       const found = array.find((element2) => element2 === element.category);
+  //       if (!found) {
+  //         array.push(element.category);
+  //       }
+  //     });
+  //     array.sort();
+  //     setCategories(array);
+  //   });
+  // };
 
   return (
     <StoreContext.Provider
@@ -42,7 +56,6 @@ export const StoreContextProvider = ({ children }) => {
         getProductStore,
         categories,
         setCategories,
-        getCategory,
       }}
     >
       {children}

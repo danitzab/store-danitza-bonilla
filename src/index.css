@@ -144,3 +144,7 @@ button:focus {
 .border-top {
   border-top: 1px solid white;
 }
+
+.page-link:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}

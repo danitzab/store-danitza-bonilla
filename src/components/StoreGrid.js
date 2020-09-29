@@ -1,26 +1,29 @@
 import React, { useContext } from 'react';
 import { StoreContext } from '../contexts/StoreContextProvider';
+import Pagination from './Pagination';
+import usePagination from '../hook/usePagination';
 
-//Componenetes
+//Componentes
 import Card from './Card';
 
 export const StoreGrid = () => {
   const { products } = useContext(StoreContext);
-//   console.log('product', products);
-
-  //   useEffect(() => {
-  //     getProductStore();
-  //   }, []);
+  const { slicedData, slicedDataTemp, pagination, prevPage, nextPage, changePage } = usePagination({ itemsPerPage: 16, data: products });
+  // console.log('ENTROOO', products);
 
   return (
-    <div className="container">
-      <div className="card-deck">
-        <div className="row">
-          {products.map((element, index) => (
-            <Card key={index} {...element} />
-          ))}
+    <>
+      <div className="container">
+        <div className="card-deck">
+          <div className="row">
+            {(slicedData.length ? slicedData : slicedDataTemp).map((element, index) => (
+              <Card key={index} {...element} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      <br />
+      <Pagination pagination={pagination} prevPage={prevPage} nextPage={nextPage} changePage={changePage} />
+    </>
   );
 };

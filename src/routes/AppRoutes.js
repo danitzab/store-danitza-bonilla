@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //Componentes
 import { Header } from '../components/Header';
-import { StoreGrid } from '../components/StoreGrid';
 import { Footer } from '../components/Footer';
+import { Home } from '../pages/Home';
 
 export const AppRoutes = () => {
   return (
@@ -12,7 +12,8 @@ export const AppRoutes = () => {
       <Header />
       <div>
         <Switch>
-          <Route path="/" exact component={StoreGrid} />
+          <Route path="/" exact component={Home} />
+          <Route path="/category/:id" component={Home} />
         </Switch>
       </div>
       <br/>

@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { StoreContext } from '../contexts/StoreContextProvider';
+// import { NavLink } from 'react-router-dom';
 
 // Componetes
 // import { History } from './History';
 
 export const Categories = () => {
-  const { getCategory, categories } = useContext(StoreContext);
+  const { categories } = useContext(StoreContext);
 
-  useEffect(() => {
-    getCategory();
-  }, []);
+  // useEffect(() => {
+  //   getCategory();
+  // }, []);
 
   return (
     <div>
@@ -30,9 +31,9 @@ export const Categories = () => {
           <ul className="navbar-nav mr-auto">
             {categories.map((element, i) => (
               <li className="nav-item active" key={i}>
-                <a className="nav-link" href="#">
-                  {element}
-                </a>
+                {/* <NavLink to={`/category/${element.id}`} className="nav-link" activeClassName="active"> */}
+                <label className="nav-link">{element}</label>
+                {/* </NavLink> */}
               </li>
             ))}
           </ul>
