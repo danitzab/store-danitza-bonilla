@@ -12,7 +12,7 @@ export const StoreGrid = () => {
   // console.log('ENTROOO', products);
 
   return (
-    <>
+    <div>
       <div className="container">
         <div className="card-deck">
           <div className="row">
@@ -24,6 +24,6 @@ export const StoreGrid = () => {
       </div>
       <br />
       <Pagination pagination={pagination} prevPage={prevPage} nextPage={nextPage} changePage={changePage} />
-    </>
+    </div>
   );
 };

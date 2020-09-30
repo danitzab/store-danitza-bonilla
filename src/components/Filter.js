@@ -4,10 +4,9 @@ import { Categories } from './Categories';
 
 export const Filter = () => {
   return (
-    <div>
+    <div className="nav-bg">
      <Categories/>
      {/* <History /> */}
-     <hr/>
     </div>
   );
 };

@@ -9,9 +9,19 @@ export const StoreContextProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    StoreService.getUser().then((response) => setUser(response.data));
+    getUserStore();
     getProductStore();
+    console.log('entro useeffect principal');
+
+    // return () => {
+    //   getProductStore();
+    //   getUserStore();
+    // };
   }, []);
+
+  const getUserStore = () => {
+    StoreService.getUser().then((response) => setUser(response.data));
+  };
 
   const getProductStore = () => {
     StoreService.getProducts().then((response) => {
@@ -28,7 +38,6 @@ export const StoreContextProvider = ({ children }) => {
       setCategories(array);
     });
   };
-
 
   // const getCategory = () => {
   //   StoreService.getProducts().then((response) => {
@@ -56,6 +65,7 @@ export const StoreContextProvider = ({ children }) => {
         getProductStore,
         categories,
         setCategories,
+        getUserStore,
       }}
     >
       {children}

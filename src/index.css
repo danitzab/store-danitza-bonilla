@@ -7,15 +7,15 @@ code {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
- .card-titles {
-  position: absolute; 
+.card-titles {
+  position: absolute;
   height: 80px;
   left: 5.17%;
   right: 69.03%;
   top: 416px;
   color: #ffffff;
   font-size: 3.5rem;
-} 
+}
 .img-fluid {
   height: 480px !important;
   top: -1px;
@@ -24,6 +24,9 @@ code {
 
 .btn {
   border-radius: 36.25rem !important;
+  color: #fff !important;
+  background: #0AD4FA !important;
+  border: #0AD4FA !important ;
 }
 
 .form-control {
@@ -147,4 +150,22 @@ button:focus {
 
 .page-link:not(:disabled):not(.disabled) {
   cursor: pointer;
+}
+
+.br {
+  border-right: 1px solid #d9d9d9 !important;
+}
+
+.bt-1 {
+  border-bottom: 1px solid #d9d9d9 !important;
+}
+
+.nav-mr {
+  display: block;
+  padding: .5rem 1rem;
+  margin-left: 24rem !important;
+}
+
+.nav-bg {
+  background-color: #f8f9fa !important;
 }
