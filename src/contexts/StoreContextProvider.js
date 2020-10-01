@@ -11,12 +11,7 @@ export const StoreContextProvider = ({ children }) => {
   useEffect(() => {
     getUserStore();
     getProductStore();
-    console.log('entro useeffect principal');
-
-    // return () => {
-    //   getProductStore();
-    //   getUserStore();
-    // };
+    console.log('entro useeffect Contex');
   }, []);
 
   const getUserStore = () => {
