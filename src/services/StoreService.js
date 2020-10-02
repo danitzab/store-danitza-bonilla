@@ -20,6 +20,7 @@ export const getHistory = () => {
 
 export const postRedeem = () => {
   return Axios.post('https://coding-challenge-api.aerolab.co/redeem', { headers });
+  // return Axios.post(`https://coding-challenge-api.aerolab.co/redeem/${productId}`, { headers });
 };
 
 export const getProducts = () => {

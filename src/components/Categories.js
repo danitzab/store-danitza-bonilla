@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { StoreContext } from '../contexts/StoreContextProvider';
 // import { NavLink } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import { StoreContext } from '../contexts/StoreContextProvider';
 
 export const Categories = () => {
   const { categories } = useContext(StoreContext);
-  console.log('categories', categories);
+  // console.log('categories', categories);
 
   return (
     <div className="container">

@@ -10,6 +10,11 @@ export const StoreGrid = () => {
   const { products } = useContext(StoreContext);
   const { slicedData, slicedDataTemp, pagination, prevPage, nextPage, changePage } = usePagination({ itemsPerPage: 16, data: products });
   // console.log('ENTROOO', products);
+  // console.log('redeem', redeem);
+
+const redeem = () => {
+  
+}
 
   return (
     <div>

@@ -7,10 +7,12 @@ export const StoreContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [redeem, setRedeem] = useState([]);
 
   useEffect(() => {
     getUserStore();
     getProductStore();
+    postRedeem();
     console.log('entro useeffect Contex');
   }, []);
 
@@ -31,6 +33,12 @@ export const StoreContextProvider = ({ children }) => {
       });
       array.sort();
       setCategories(array);
+    });
+  };
+
+  const postRedeem = () => {
+    StoreService.postRedeem().then((response) => {
+      setRedeem(response.data);
     });
   };
 
@@ -61,6 +69,8 @@ export const StoreContextProvider = ({ children }) => {
         categories,
         setCategories,
         getUserStore,
+        redeem,
+        setRedeem,
       }}
     >
       {children}

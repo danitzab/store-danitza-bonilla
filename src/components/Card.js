@@ -16,18 +16,19 @@ const Card = ({ img, name, category, cost }) => {
           <img src="https://media2.giphy.com/media/3zhxq2ttgN6rEw8SDx/giphy.gif" className="card-img-top" alt="img-not-found" />
         )}
         <span className="card-overlay">
-        <img src={buyWhite} alt="icon-comprar" className="icon" />
+          <img src={buyWhite} alt="icon-comprar" className="icon" />
           <div className="row col-auto">
             <span className="card-comments text-center">
-              {cost} <img src={coin} alt="coin"/>
+              {cost} <img src={coin} alt="coin" />
             </span>
-              <button className="card-likes btn btn-light">Redimir ahora</button>
-            </div>
+            <button className="card-likes btn btn-light">Redimir ahora</button>
+          </div>
         </span>
         <div className="card-body">
           <p className="card-text mb-0">
             <small className="text-muted">{category}</small>
           </p>
+
           <h5 className="card-title mb-1">{name}</h5>
         </div>
       </div>
