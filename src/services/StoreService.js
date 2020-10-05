@@ -10,16 +10,22 @@ export const getUser = () => {
   return Axios.get('https://coding-challenge-api.aerolab.co/user/me', { headers });
 };
 
-export const addPoints = () => {
-  return Axios.post('https://coding-challenge-api.aerolab.co/user/points', { headers });
+export const addPoints = (amount) => {
+  const body = {
+    amount,
+  };
+  return Axios.post('https://coding-challenge-api.aerolab.co/user/points', body, { headers });
 };
 
 export const getHistory = () => {
   return Axios.get('https://coding-challenge-api.aerolab.co/user/history', { headers });
 };
 
-export const postRedeem = () => {
-  return Axios.post('https://coding-challenge-api.aerolab.co/redeem', { headers });
+export const postRedeem = (productId) => {
+  const body = {
+    productId,
+  };
+  return Axios.post('https://coding-challenge-api.aerolab.co/redeem', body, { headers });
   // return Axios.post(`https://coding-challenge-api.aerolab.co/redeem/${productId}`, { headers });
 };
 

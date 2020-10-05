@@ -7,20 +7,59 @@ export const StoreContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [redeem, setRedeem] = useState([]);
+  // const [filter, setfilter] = useState([]);
 
   useEffect(() => {
     getUserStore();
     getProductStore();
-    postRedeem();
+    getCategory();
+
     console.log('entro useeffect Contex');
   }, []);
 
   const getUserStore = () => {
-    StoreService.getUser().then((response) => setUser(response.data));
+    StoreService.getUser().then((response) => {
+      response.data.points = 0;
+      setUser(response.data)
+    });
   };
 
-  const getProductStore = () => {
+  const getProductStore = (categoryId) => {
+    StoreService.getProducts().then((response) => {
+      const products = response.data;
+      if (categoryId) {
+        const newArray = products.filter((element) => element.category === categoryId);
+        setProducts(newArray);
+      } else {
+        setProducts(products);
+      }
+
+      //   const array = [];
+      //   response.data.forEach((element) => {
+      //     const found = array.find((element2) => element2 === element.category);
+      //     if (!found) {
+      //       array.push(element.category);
+      //     }
+      //   });
+      //   array.sort();
+      //   setCategories(array);
+      // });
+    });
+  };
+
+  const postRedeem = (productId) => {
+    StoreService.postRedeem(productId).then((response) => {
+      getUserStore();
+    });
+  };
+
+  const addPoints = (amount) => {
+    StoreService.addPoints(amount).then((response) => {
+      getUserStore();
+    });
+  };
+
+  const getCategory = () => {
     StoreService.getProducts().then((response) => {
       setProducts(response.data);
 
@@ -36,26 +75,10 @@ export const StoreContextProvider = ({ children }) => {
     });
   };
 
-  const postRedeem = () => {
-    StoreService.postRedeem().then((response) => {
-      setRedeem(response.data);
-    });
-  };
-
-  // const getCategory = () => {
-  //   StoreService.getProducts().then((response) => {
-  //     setProducts(response.data);
-
-  //     const array = [];
-  //     response.data.map((element) => {
-  //       const found = array.find((element2) => element2 === element.category);
-  //       if (!found) {
-  //         array.push(element.category);
-  //       }
-  //     });
-  //     array.sort();
-  //     setCategories(array);
-  //   });
+  // const getProductsByCategory = (categoryId) => {
+  //   const newArray = products.filter((element) => element.category === categoryId);
+  //   setProducts(newArray);
+  //   console.log(newArray);
   // };
 
   return (
@@ -68,9 +91,11 @@ export const StoreContextProvider = ({ children }) => {
         getProductStore,
         categories,
         setCategories,
+        getCategory,
         getUserStore,
-        redeem,
-        setRedeem,
+        postRedeem,
+        // getProductsByCategory,
+        addPoints,
       }}
     >
       {children}

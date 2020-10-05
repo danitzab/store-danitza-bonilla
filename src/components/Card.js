@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 //Icon
 import buy from '../assets/icons/buy-blue.svg';
 import buyWhite from '../assets/icons/buy-white.svg';
 import coin from '../assets/icons/coin.svg';
 
-const Card = ({ img, name, category, cost }) => {
+import { StoreContext } from '../contexts/StoreContextProvider';
+
+const Card = ({ img, name, category, cost, _id }) => {
+  const { postRedeem } = useContext(StoreContext);
+  // console.log('redeem', postRedeem);
+
   return (
     <div className="col-sm-12 col-md-3 mb-4">
       <div className="card mt-4 h-100 mx-auto justify-content-center">
@@ -21,7 +26,9 @@ const Card = ({ img, name, category, cost }) => {
             <span className="card-comments text-center">
               {cost} <img src={coin} alt="coin" />
             </span>
-            <button className="card-likes btn btn-light">Redimir ahora</button>
+            <button className="card-likes btn btn-light" onClick={() => postRedeem(_id)}>
+              Redimir ahora
+            </button>
           </div>
         </span>
         <div className="card-body">

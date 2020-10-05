@@ -11,15 +11,13 @@ export const User = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-light bg-light justify-content-between">
+      <nav className="navbar navbar-white justify-content-between">
         <label className="navbar-brand">
           <img src={logo} alt="aerolab-logo" />
         </label>
         <form className="form-inline">
-          <label className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            {user.name}
-          </label>
-          <label className="btn btn-outline-success my-2 my-sm-0">
+          <label className="form-control mr-sm-2">{user.name}</label>
+          <label className="btn-gray my-2 my-sm-0">
             {user.points} <img src={coin} alt="coin" />
           </label>
         </form>

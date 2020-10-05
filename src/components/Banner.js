@@ -1,7 +1,9 @@
 import React from 'react';
 import header from '../assets/header-x1.png';
 
+
 export const Banner = () => {
+
   return (
     <div>
       <h1 className="card-titles">Electronic</h1>

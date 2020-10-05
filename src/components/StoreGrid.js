@@ -12,9 +12,6 @@ export const StoreGrid = () => {
   // console.log('ENTROOO', products);
   // console.log('redeem', redeem);
 
-const redeem = () => {
-  
-}
 
   return (
     <div>
