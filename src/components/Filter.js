@@ -1,12 +1,11 @@
 import React from 'react';
-import { Categories } from './Categories';
+import { Menu } from './Menu';
 
 
 export const Filter = () => {
   return (
     <div className="nav-bg">
-     <Categories/>
-     {/* <History /> */}
+     <Menu/>
     </div>
   );
 };

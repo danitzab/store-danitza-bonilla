@@ -8,7 +8,7 @@ export const Header = () => {
     <div>
       <div>
         <User />
-        <Banner />
+        {/* <Banner /> */}
       </div>
       <Filter/>
     </div>

@@ -7,30 +7,37 @@ export const StoreContextProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [historyProducts, setHistoryProducts] = useState([]);
   // const [filter, setfilter] = useState([]);
 
   useEffect(() => {
     getUserStore();
-    getProductStore();
+    countHistoryProducts();
+    // getProductStore();
     getCategory();
+    // getHistory();
 
     console.log('entro useeffect Contex');
   }, []);
 
   const getUserStore = () => {
     StoreService.getUser().then((response) => {
-      response.data.points = 0;
-      setUser(response.data)
+      // response.data.points = 0;
+      setUser(response.data);
     });
   };
 
   const getProductStore = (categoryId) => {
+    console.log('ENTRO getProductStore -----------------');
     StoreService.getProducts().then((response) => {
       const products = response.data;
+      // console.log('DATA----', products && products[0]);
       if (categoryId) {
+        // console.log('ENTROOOOOO IF');
         const newArray = products.filter((element) => element.category === categoryId);
         setProducts(newArray);
       } else {
+        // console.log('ENTROOOOOO ELSE');
         setProducts(products);
       }
 
@@ -47,16 +54,23 @@ export const StoreContextProvider = ({ children }) => {
     });
   };
 
-  const postRedeem = (productId) => {
-    StoreService.postRedeem(productId).then((response) => {
-      getUserStore();
-    });
-  };
+  const getHistory = (categoryId) => {
+    countHistoryProducts();
 
-  const addPoints = (amount) => {
-    StoreService.addPoints(amount).then((response) => {
-      getUserStore();
+    console.log('ENTRO getHistory -----------------id', categoryId);
+    StoreService.getHistory().then((response) => {
+      const getHistoryproducts = response.data;
+      // console.log('DATA----', products && products[0]);
+      if (categoryId) {
+        // console.log('ENTROOOOOO IF');
+        const newArray = getHistoryproducts.filter((element) => element.category === categoryId);
+        setHistoryProducts(newArray);
+      } else {
+        // console.log('ENTROOOOOO ELSE');
+        setHistoryProducts(getHistoryproducts);
+      }
     });
+    // countHistoryProducts()
   };
 
   const getCategory = () => {
@@ -75,11 +89,42 @@ export const StoreContextProvider = ({ children }) => {
     });
   };
 
-  // const getProductsByCategory = (categoryId) => {
-  //   const newArray = products.filter((element) => element.category === categoryId);
-  //   setProducts(newArray);
-  //   console.log(newArray);
-  // };
+  const addPoints = (amount) => {
+    StoreService.addPoints(amount).then((response) => {
+      getUserStore();
+    });
+  };
+
+  const postRedeem = (productId) => {
+    StoreService.postRedeem(productId).then((response) => {
+      getUserStore();
+    });
+  };
+
+  const countHistoryProducts = () => {
+    StoreService.getHistory().then((response) => {
+      const data = response.data;
+
+      // const productsRepeated = new Map();
+      const productsRepeated = [];
+      const mySetproduct = new Set();
+
+      data.forEach((element) => {
+        // if (!productsRepeated.get(element.productId) && element.productId) {
+        if (!mySetproduct.has(element.productId) && element.productId) {
+          let elementArray = data.filter((element2) => element2.productId === element.productId);
+          // console.log(element.name, ' - ', elementArray.length);
+          // productsRepeated.set(element.productId, { ...element, count: elementArray.length });
+          productsRepeated.push({ ...element, count: elementArray.length });
+          mySetproduct.add(element.productId);
+        }
+      });
+      setHistoryProducts(productsRepeated);
+      console.log(productsRepeated);
+      console.log(mySetproduct);
+      // console.log(Array.from(productsRepeated));
+    });
+  };
 
   return (
     <StoreContext.Provider
@@ -96,6 +141,10 @@ export const StoreContextProvider = ({ children }) => {
         postRedeem,
         // getProductsByCategory,
         addPoints,
+        historyProducts,
+        setHistoryProducts,
+        getHistory,
+        countHistoryProducts,
       }}
     >
       {children}

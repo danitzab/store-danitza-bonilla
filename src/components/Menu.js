@@ -1,33 +1,38 @@
 import React, { useContext } from 'react';
 import { StoreContext } from '../contexts/StoreContextProvider';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-//Icon
+// Components
+// import { History } from './History';
+
+// Icon
 import coin from '../assets/icons/coin.svg';
 // import arrow from '../assets/icons/arrow-right.svg';
 // import arrow1 from '../assets/icons/arrow-left.svg';
 
-export const Categories = () => {
-  const { categories, getProductStore, addPoints } = useContext(StoreContext);
-  // console.log('categories', categories);
-  // filterCategories()
+export const Menu = () => {
+  const { categories, getProductStore, addPoints, getHistory, historyProducts, setHistoryProducts } = useContext(StoreContext);
 
-  const handleClick = (e) => {
-    // filterCategories();
-    const valueLabel = e.target.id;
-    getProductStore(valueLabel);
-    console.log(valueLabel);
+  const handleClickGetCategories = (e) => {
+    const id = e.target.id;
+    getProductStore(id);
+    getHistory(id);
   };
-
-  // const valueInput = (e) => {
-  //   const value = e.target.id;
-  //   console.log(value);
-  // }
 
   const handleAddPoints = (e) => {
     const value = e.target.id;
     addPoints(parseInt(value));
   };
+
+  // const handleGetHistoryAll = () => {
+  //   setHistoryProducts(historyProducts);
+  //   getHistory();
+  // };
+
+  // const handleGetHistoryMostRecent = () => {
+  //   // const valueLabel = e.target.id;
+  //   setHistoryProducts(historyProducts.slice(0, 16));
+  // };
 
   return (
     <div className="container">
@@ -58,25 +63,27 @@ export const Categories = () => {
                 Categorías
               </span>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <label name="item" className="dropdown-item" href="#" onClick={() => getProductStore()}>
+                  Ver todos
+                </label>
                 {categories.map((element, i) => (
-                  <label name="item" id={element} className="dropdown-item" href="#" key={i} onClick={handleClick}>
+                  <label name="item" id={element} className="dropdown-item" href="#" key={i} onClick={handleClickGetCategories}>
                     {element}
                   </label>
                 ))}
               </div>
             </li>
             <li className="nav-item ml-3">
-              <label className="nav-links">Sort by:</label>
+              <NavLink to="/history">
+                <label className="nav-links">Historial de Canjes</label>
+              </NavLink>
+            </li>
+            {/* <li className="nav-item ml-3 text-white">
+              <label className="nav-link">Mas reciente</label>
             </li>
             <li className="nav-item ml-3 text-white">
-              <label className="nav-link">Most recent</label>
-            </li>
-            <li className="nav-item ml-3">
-              <label className="nav-link">Lowest price</label>
-            </li>
-            <li className="nav-item ml-3">
-              <label className="nav-link">Highest price</label>
-            </li>
+              <label className="nav-link">Todos</label>
+            </li> */}
           </ul>
           <button type="button" className="btn btn-outline-success " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
             Agregar puntos <img src={coin} alt="coin" />
@@ -95,9 +102,6 @@ export const Categories = () => {
                 <div className="modal-body">
                   <form>
                     <div className="form-group">
-                      {/* <label htmlFor="recipient-name" className="col-form-label">
-                         
-                        </label> */}
                       <button type="button" className="btn btn-primary mr-3" id="1000" onClick={handleAddPoints}>
                         1000
                       </button>

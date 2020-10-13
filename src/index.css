@@ -51,7 +51,6 @@ code {
 }
 
 .btn {
-  
   border-radius: 36.25rem !important;
 }
 /* .btn-outline-successt:hover {
@@ -236,4 +235,16 @@ button:focus {
 .btn-primary {
   background: #0ad4fa !important;
   border: #0ad4fa !important;
+}
+
+.icon-con {
+  position: absolute;
+  right: 16px;
+  top: 22px;
+  background: #616161;
+  border-radius: 44px;
+  opacity: 0.8;
+  mix-blend-mode: normal;
+  margin-left: 3px;
+  padding: .20rem .75rem !important;
 }
