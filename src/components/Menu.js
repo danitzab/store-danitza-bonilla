@@ -10,13 +10,15 @@ import coin from '../assets/icons/coin.svg';
 // import arrow from '../assets/icons/arrow-right.svg';
 // import arrow1 from '../assets/icons/arrow-left.svg';
 
-export const Menu = () => {
-  const { categories, getProductStore, addPoints, getHistory, historyProducts, setHistoryProducts } = useContext(StoreContext);
-
+export const Menu = ({ id }) => {
+  const { categories, getProductStore, addPoints, getHistory, historyProducts, setHistoryProducts, path, setPath } = useContext(
+    StoreContext
+  );
+  // console.log('id', id);
   const handleClickGetCategories = (e) => {
     const id = e.target.id;
     getProductStore(id);
-    getHistory(id);
+    // getHistory(id);
   };
 
   const handleAddPoints = (e) => {
@@ -31,7 +33,8 @@ export const Menu = () => {
 
   // const handleGetHistoryMostRecent = () => {
   //   // const valueLabel = e.target.id;
-  //   setHistoryProducts(historyProducts.slice(0, 16));
+  //   // setHistoryProducts(historyProducts.slice(0, 16));
+  //   setHistoryProducts(historyProducts.filter((element) => element === element.createDate));
   // };
 
   return (
@@ -51,35 +54,45 @@ export const Menu = () => {
 
         <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item dropdown">
-              <span
-                className="nav-links dropdown-toggle br mr-auto"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Categorías
-              </span>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <label name="item" className="dropdown-item" href="#" onClick={() => getProductStore()}>
-                  Ver todos
-                </label>
-                {categories.map((element, i) => (
-                  <label name="item" id={element} className="dropdown-item" href="#" key={i} onClick={handleClickGetCategories}>
-                    {element}
+            {!path && (
+              <li className="nav-item dropdown">
+                <span
+                  className="nav-links dropdown-toggle br mr-auto"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Categorías
+                </span>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <label name="item" className="dropdown-item" href="#" onClick={() => getProductStore()}>
+                    Ver todos
                   </label>
-                ))}
-              </div>
-            </li>
+                  {categories.map((element, i) => (
+                    <label name="item" id={element} className="dropdown-item" href="#" key={i} onClick={handleClickGetCategories}>
+                      {element}
+                    </label>
+                  ))}
+                </div>
+              </li>
+            )}
+            {path && (
+              <li className="nav-item ml-3">
+                <NavLink to="/">
+                  <label className="nav-links">Home</label>
+                </NavLink>
+              </li>
+            )}
             <li className="nav-item ml-3">
               <NavLink to="/history">
                 <label className="nav-links">Historial de Canjes</label>
               </NavLink>
             </li>
+
             {/* <li className="nav-item ml-3 text-white">
-              <label className="nav-link">Mas reciente</label>
+              <label className="nav-link" onClick={handleGetHistoryMostRecent}>Mas reciente</label>
             </li>
             <li className="nav-item ml-3 text-white">
               <label className="nav-link">Todos</label>

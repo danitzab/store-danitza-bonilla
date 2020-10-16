@@ -7,15 +7,16 @@ import usePagination from '../hook/usePagination';
 import Card from './Card';
 import { CardHistory } from './CardHistory';
 
-export const StoreGrid = ({ id }) => {
-  const { products, historyProducts } = useContext(StoreContext);
+export const StoreGrid = ({ path }) => {
+  const { products, historyProducts, setPath } = useContext(StoreContext);
   // console.log('products grid', products[0]?.createDate);
+  // console.log('id', id);
 
   // console.log('ANTES');
 
   let data = [];
-
-  if (id === 'history') {
+  setPath(path);
+  if (path === 'history') {
     data = historyProducts;
   } else {
     data = products;
@@ -34,7 +35,7 @@ export const StoreGrid = ({ id }) => {
 
   return (
     <div>
-      {!id ? (
+      {!path ? (
         <div className="container">
           <div className="row">
             {(slicedData.length ? slicedData : slicedDataTemp).map((element, index) => (

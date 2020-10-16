@@ -1,6 +1,10 @@
 import React from 'react';
+// import { StoreContext } from '../contexts/StoreContextProvider';
 
 export const CardHistory = ({ img, name, category, cost, count }) => {
+  // const { countProducts } = useContext(StoreContext);
+  // console.log('countProducts', countProducts);
+
   return (
     <div className="mt-4 h-100 mx-auto justify-content-center">
       <div className="card ">
@@ -14,12 +18,16 @@ export const CardHistory = ({ img, name, category, cost, count }) => {
               )}
             </div>
             <div className="col-8">
+              <label type="button" className="btn btn-primary ml-auto">
+                # Canjes <span className="badge badge-light">{count}</span>
+              </label>
               <p className="card-text">{category}</p>
               <h5 className="card-title justify-content-center">{name}</h5>
               <h5 className="card-text">Us {cost}</h5>
-              <label type="button" className="btn btn-primary">
+
+              {/* <label type="button" className="btn btn-primary">
                 # Canjes <span className="badge badge-light">{count}</span>
-              </label>
+              </label> */}
             </div>
           </div>
         </div>
