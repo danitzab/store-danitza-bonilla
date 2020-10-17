@@ -116,11 +116,14 @@ button:focus {
 .card:hover .card-overlay {
   display: flex;
 }
-.card-likes,
+.card-likes {
+  width: 100%;
+  margin: 5px;
+}
 .card-comments {
   width: 100%;
   margin: 5px;
-  /* font-weight: bold; */
+  font-weight: bold;
   /* text-align: center;
   display: inline-block; */
 }
