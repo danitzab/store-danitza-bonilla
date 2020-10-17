@@ -68,7 +68,7 @@ export const Menu = () => {
             ) : (
               <li className="nav-item ml-3">
                 <NavLink to="/">
-                  <label className="nav-links">
+                  <label className="nav-links br">
                     <img className="width-img mr-2" src={logo} alt="aerolab-logo" />
                     Home
                   </label>
@@ -77,7 +77,7 @@ export const Menu = () => {
             )}
             <li className="nav-item dropdown">
               <span
-                className="nav-links dropdown-toggle br mr-auto"
+                className="nav-links dropdown-toggle br mr-auto ml-3"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"

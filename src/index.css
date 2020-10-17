@@ -92,13 +92,13 @@ button:focus {
   outline: -32px auto -webkit-focus-ring-color;
 }
 
-.ml-auto {
+/* .ml-auto {
   margin-left: 264px !important;
 }
 
 .mt-auto {
   margin-top: -10px !important;
-}
+} */
 
 .card-overlay {
   background: linear-gradient(180deg, rgba(10, 212, 250, 0.86) 0%, rgba(37, 187, 241, 0.86) 100%);
@@ -387,6 +387,6 @@ a:hover {
   border: none;
 }
 
-.ml-auto {
+/* .ml-auto {
   margin-left: 165px!important;
-}
+} */
