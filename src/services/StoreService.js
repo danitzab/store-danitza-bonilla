@@ -26,7 +26,6 @@ export const postRedeem = (productId) => {
     productId,
   };
   return Axios.post('https://coding-challenge-api.aerolab.co/redeem', body, { headers });
-  // return Axios.post(`https://coding-challenge-api.aerolab.co/redeem/${productId}`, { headers });
 };
 
 export const getProducts = () => {

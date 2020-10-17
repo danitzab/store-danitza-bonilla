@@ -1,20 +1,31 @@
 import React, { useContext } from 'react';
-
-//Icon
-import buy from '../assets/icons/buy-blue.svg';
-import buyWhite from '../assets/icons/buy-white.svg';
-import coin from '../assets/icons/coin.svg';
-
 import { StoreContext } from '../contexts/StoreContextProvider';
+
+//Icons
+import buyWhite from '../assets/icons/buy-white.svg';
+import buy from '../assets/icons/buy-blue.svg';
+import coin from '../assets/icons/coin.svg';
 
 const Card = ({ img, name, category, cost, _id }) => {
   const { user, postRedeem } = useContext(StoreContext);
-  // console.log('redeem', user);
 
   return (
     <div className="card mt-4 h-100 mx-auto justify-content-center">
-      {user.points ? (
-        <img src={buy} alt="icon-buy" className="mt-2 ml-auto p-3" />
+      {user.points >= cost ? (
+        <>
+          <img src={buy} alt="icon-buy" className="mt-2 ml-auto p-3" />
+          <span className="card-overlay">
+            <img className="icon" src={buyWhite} alt="icon-buy" />
+            <div className="row col-auto">
+              <span className="card-comments text-center">
+                {cost} <img src={coin} alt="coin" />
+              </span>
+              <button className="card-likes btn btn-light" onClick={() => postRedeem(_id)}>
+                Redimir ahora
+              </button>
+            </div>
+          </span>
+        </>
       ) : (
         <label className="btn btn-secondary icon-con">
           Te falta {cost}
@@ -27,17 +38,6 @@ const Card = ({ img, name, category, cost, _id }) => {
       ) : (
         <img src="https://media2.giphy.com/media/3zhxq2ttgN6rEw8SDx/giphy.gif" className="card-img-top" alt="img-not-found" />
       )}
-      <span className="card-overlay">
-        <img src={buyWhite} alt="icon-comprar" className="icon" />
-        <div className="row col-auto">
-          <span className="card-comments text-center">
-            {cost} <img src={coin} alt="coin" />
-          </span>
-          <button className="card-likes btn btn-light" onClick={() => postRedeem(_id)}>
-            Redimir ahora
-          </button>
-        </div>
-      </span>
       <div className="card-body">
         <p className="card-text mb-0">
           <small className="text-muted">{category}</small>

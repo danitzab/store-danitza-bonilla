@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
-import header from '../assets/header-x1.png';
-
 import { StoreContext } from '../contexts/StoreContextProvider';
+
+// Components
+import header from '../assets/header-x1.png';
 
 export const Banner = () => {
   const { getProductStore } = useContext(StoreContext);
 
   return (
-    <div>
+    <div className="d-none d-md-block">
       <label className="card-titles" onClick={() => getProductStore()}>
         Electronic
       </label>

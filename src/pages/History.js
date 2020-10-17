@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { StoreContext } from '../contexts/StoreContextProvider';
 
+// Components
 import { StoreGrid } from '../components/StoreGrid';
 
 export const History = ({ match }) => {
@@ -8,12 +9,11 @@ export const History = ({ match }) => {
 
   useEffect(() => {
     getHistory();
-    // console.log('entro getHistory');
   }, []);
 
   return (
     <div className="container">
-      <StoreGrid path={match.params.id} data={historyProducts} />
+      <StoreGrid path={match.path} data={historyProducts} />
       <br />
     </div>
   );

@@ -2,40 +2,20 @@ import React, { useContext } from 'react';
 import { StoreContext } from '../contexts/StoreContextProvider';
 import { NavLink } from 'react-router-dom';
 
-// Components
-// import { History } from './History';
-
 // Icon
 import coin from '../assets/icons/coin.svg';
-// import arrow from '../assets/icons/arrow-right.svg';
-// import arrow1 from '../assets/icons/arrow-left.svg';
+import filter from '../assets/icons/filter.svg';
+import list from '../assets/icons/list.svg';
+import logo from '../assets/aerolab-logo.svg';
+import history from '../assets/icons/history-2.svg';
 
-export const Menu = ({ id }) => {
-  const { categories, getProductStore, addPoints, getHistory, historyProducts, setHistoryProducts, path, setPath } = useContext(
-    StoreContext
-  );
-  // console.log('id', id);
-  const handleClickGetCategories = (e) => {
-    const id = e.target.id;
-    getProductStore(id);
-    // getHistory(id);
-  };
+export const Menu = () => {
+  const { categories, getProductStore, setSortPrice, addPoints, path } = useContext(StoreContext);
 
   const handleAddPoints = (e) => {
     const value = e.target.id;
     addPoints(parseInt(value));
   };
-
-  // const handleGetHistoryAll = () => {
-  //   setHistoryProducts(historyProducts);
-  //   getHistory();
-  // };
-
-  // const handleGetHistoryMostRecent = () => {
-  //   // const valueLabel = e.target.id;
-  //   // setHistoryProducts(historyProducts.slice(0, 16));
-  //   setHistoryProducts(historyProducts.filter((element) => element === element.createDate));
-  // };
 
   return (
     <div className="container">
@@ -54,7 +34,7 @@ export const Menu = ({ id }) => {
 
         <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            {!path && (
+            {!path ? (
               <li className="nav-item dropdown">
                 <span
                   className="nav-links dropdown-toggle br mr-auto"
@@ -64,6 +44,7 @@ export const Menu = ({ id }) => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
+                  <img className="width-img mr-2" src={list} alt="list" />
                   Categorías
                 </span>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -71,32 +52,58 @@ export const Menu = ({ id }) => {
                     Ver todos
                   </label>
                   {categories.map((element, i) => (
-                    <label name="item" id={element} className="dropdown-item" href="#" key={i} onClick={handleClickGetCategories}>
+                    <label
+                      name="item"
+                      id={element}
+                      className="dropdown-item"
+                      href="#"
+                      key={i}
+                      onClick={(e) => getProductStore(e.target.id)}
+                    >
                       {element}
                     </label>
                   ))}
                 </div>
               </li>
-            )}
-            {path && (
+            ) : (
               <li className="nav-item ml-3">
                 <NavLink to="/">
-                  <label className="nav-links">Home</label>
+                  <label className="nav-links">
+                    <img className="width-img mr-2" src={logo} alt="aerolab-logo" />
+                    Home
+                  </label>
                 </NavLink>
               </li>
             )}
+            <li className="nav-item dropdown">
+              <span
+                className="nav-links dropdown-toggle br mr-auto"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <img className="width-img mr-2" src={filter} alt="filter" />
+                Precios
+              </span>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <label name="menor a mayor" className="dropdown-item" href="#" onClick={() => setSortPrice('ASC')}>
+                  Menor a mayor
+                </label>
+                <label name="mayor a menor" className="dropdown-item" href="#" onClick={() => setSortPrice('DESC')}>
+                  Mayor a menor
+                </label>
+              </div>
+            </li>
             <li className="nav-item ml-3">
               <NavLink to="/history">
-                <label className="nav-links">Historial de Canjes</label>
+                <label className="nav-links">
+                  <img className="width-img mr-2" src={history} alt="history" />
+                  Historial de Canjes
+                </label>
               </NavLink>
             </li>
-
-            {/* <li className="nav-item ml-3 text-white">
-              <label className="nav-link" onClick={handleGetHistoryMostRecent}>Mas reciente</label>
-            </li>
-            <li className="nav-item ml-3 text-white">
-              <label className="nav-link">Todos</label>
-            </li> */}
           </ul>
           <button type="button" className="btn btn-outline-success " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
             Agregar puntos <img src={coin} alt="coin" />
@@ -127,26 +134,9 @@ export const Menu = ({ id }) => {
                     </div>
                   </form>
                 </div>
-                {/* <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal">
-                    Cerrar
-                  </button>
-                  <button type="button" className="btn btn-primary"onChange={addPoints}>
-                    Agregar
-                  </button>
-                </div> */}
               </div>
             </div>
           </div>
-          {/* <form className="form-inline my-2 my-lg-0"> */}
-          {/* <label>16 of 32</label> */}
-          {/* <a href="#" className="mr-3">
-              <img src={arrow1} alt="arrow-left" value="arrow" />
-            </a>
-            <a href="#" className="mr">
-              <img src={arrow} alt="arrow-left" value="arrow" />
-            </a> */}
-          {/* </form> */}
         </div>
       </nav>
     </div>
