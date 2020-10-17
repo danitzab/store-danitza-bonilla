@@ -42,7 +42,7 @@ const Card = ({ img, name, category, cost, _id }) => {
         <p className="card-text mb-0">
           <small className="text-muted">{category}</small>
         </p>
-        <h5 className="card-title mb-1">{name}</h5>
+        <h5 className="card-title mb-1 font-weight-bolder">{name}</h5>
       </div>
     </div>
   );

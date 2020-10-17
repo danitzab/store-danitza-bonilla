@@ -25,11 +25,11 @@ export const CardHistory = ({ img, name, category, cost, count }) => {
                 # Canjes <span className="badge badge-light">{count}</span>
               </label>
               <p className="card-text">{category}</p>
-              <h5 className="card-title justify-content-center">{name}</h5>
-              <h5 className="card-text">
+              <h5 className="card-title justify-content-center font-weight-bolder">{name}</h5>
+              <h6 className="card-text font-weight-bolder">
                 <img className="width-img mr-2" src={coin} alt="dolar" />
                 {cost}
-              </h5>
+              </h6>
             </div>
           </div>
         </div>
